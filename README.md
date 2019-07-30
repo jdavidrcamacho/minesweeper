@@ -1,7 +1,7 @@
 # minesweeper
 My python version of Microsoft Minesweeper (still not finished)
 
-To run just download the file and run it in you terminal with
+To run just download the file and run it in your terminal with
 
 	python mines.py 
 
