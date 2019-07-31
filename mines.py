@@ -65,7 +65,6 @@ def _clicked():
     """
     x, y, mines = int(e1.get()), int(e2.get()), int(e3.get())
     minefield = _minefield(x, y, mines)
-    print(minefield)
     _minesWindow(x, y, minefield)
 
 button_ids = []
