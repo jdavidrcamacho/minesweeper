@@ -66,23 +66,28 @@ def _clicked():
     x, y, mines = int(e1.get()), int(e2.get()), int(e3.get())
     minefield = _minefield(x, y, mines)
     print(minefield)
-    #plt.imshow(minefield)
-    #root.destroy()
     _minesWindow(x, y, minefield)
 
 button_ids = []
 def _check(i, minefield):
     #item, minefield = args
     bname = (button_ids[i])
-    row    = bname.grid_info()['row']      # Row of the button
-    column = bname.grid_info()['column']
-    
-    print(row, column)
+    row    = bname.grid_info()['row']       # Row of the button
+    column = bname.grid_info()['column']    # Column of the button
     if minefield[row, column] == np.inf:
-        print('BUUUM')
+        newWindow = tk.Tk()
+        newWindow.title("GAME OVER")
+        frame1 = tk.Frame(newWindow)
+        frame1.grid(row=0,column=0)
+        tk.Label(frame1, 
+                 text="BUUUM!! \n \n You have hit a mine").grid(row = 1, 
+                                                                column = 1)
+        tk.Button(frame1, 
+                  text="Close", command = frame1.destroy).grid(row = 2, 
+                                                               column = 1)
     else:
-        bname.destroy()
-        print('You are safe for now')
+        bname.configure(text = str(int(minefield[row, column])))
+        #bname.destroy()
 
 def _minesWindow(xvalue, yvalue, minefield):
     """
@@ -98,10 +103,11 @@ def _minesWindow(xvalue, yvalue, minefield):
         button = tk.Button(frame, command = partial(_check, i = i, 
                                                     minefield = minefield))
         button.grid(row = item[0], column = item[1], sticky = "n,e,s,w")
+        button.configure(text = "?")
         button_ids.append(button)
  
     tk.Label(window, text = " ").grid(row = yvalue+1, column = 0)
-    btn2 = tk.Button(window, text="close", command = window.destroy)
+    btn2 = tk.Button(window, text="Close", command = window.destroy)
     btn2.grid(row = yvalue+2, column = 0)
     window.mainloop()
 
