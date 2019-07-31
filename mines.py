@@ -83,7 +83,7 @@ def _check(i, minefield):
                  text="BUUUM!! \n \n You have hit a mine").grid(row = 1, 
                                                                 column = 1)
         tk.Button(frame1, 
-                  text="Close", command = frame1.destroy).grid(row = 2, 
+                  text="Close", command = newWindow.destroy).grid(row = 2, 
                                                                column = 1)
     else:
         bname.configure(text = str(int(minefield[row, column])))
