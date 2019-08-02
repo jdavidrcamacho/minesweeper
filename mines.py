@@ -74,6 +74,7 @@ def _check(i, minefield):
     row    = bname.grid_info()['row']       # Row of the button
     column = bname.grid_info()['column']    # Column of the button
     if minefield[row, column] == np.inf:
+        bname.configure(bg="black")
         newWindow = tk.Tk()
         newWindow.title("GAME OVER")
         frame1 = tk.Frame(newWindow)
@@ -85,7 +86,24 @@ def _check(i, minefield):
                   text="Close", command = newWindow.destroy).grid(row = 2, 
                                                                column = 1)
     else:
-        bname.configure(text = str(int(minefield[row, column])))
+        if int(minefield[row, column]) == 0:
+            bname.configure(text = str(int(minefield[row, column])), bg="white")
+        if int(minefield[row, column]) == 1:
+            bname.configure(text = str(int(minefield[row, column])), bg="pale green")
+        if int(minefield[row, column]) == 2:
+            bname.configure(text = str(int(minefield[row, column])), bg="yellow green")
+        if int(minefield[row, column]) == 3:
+            bname.configure(text = str(int(minefield[row, column])), bg="yellow")
+        if int(minefield[row, column]) == 4:
+            bname.configure(text = str(int(minefield[row, column])), bg="orange")
+        if int(minefield[row, column]) == 5:
+            bname.configure(text = str(int(minefield[row, column])), bg="dark orange")
+        if int(minefield[row, column]) == 6:
+            bname.configure(text = str(int(minefield[row, column])), bg="orange red")
+        if int(minefield[row, column]) == 7:
+            bname.configure(text = str(int(minefield[row, column])), bg="red2")
+        if int(minefield[row, column]) == 8:
+            bname.configure(text = str(int(minefield[row, column])), bg="red3")
         #bname.destroy()
 
 def _minesWindow(xvalue, yvalue, minefield):
@@ -94,12 +112,12 @@ def _minesWindow(xvalue, yvalue, minefield):
     """
     window = tk.Tk()
     window.title("Kalimotxo's minesweeper")
-    frame = tk.Frame(window)
-    frame.grid(row=0,column=0)
+    frame2 = tk.Frame(window)
+    frame2.grid(row=0,column=0)
     
     positions = product(range(xvalue), range(yvalue))
     for i, item in enumerate(positions):
-        button = tk.Button(frame, command = partial(_check, i = i, 
+        button = tk.Button(frame2, command = partial(_check, i = i, 
                                                     minefield = minefield))
         button.grid(row = item[0], column = item[1], sticky = "n,e,s,w")
         button.configure(text = "?")
