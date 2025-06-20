@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "minesweeper"
+version = "0.1.0"
+description = "A simple Tkinter-based Minesweeper game"
+authors = ["João Camacho <jdavidrcamacho@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "minesweeper" }]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.24"
+pillow = "^10.0"
+
+[tool.poetry.dev-dependencies]
+# Add development dependencies here if needed (e.g., black, flake8)
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.venv
+  | \.git
+  | __pycache__
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_third_party = ["numpy", "PIL"]
+skip = ["venv", ".venv"]
+
+[tool.mypy]
+python_version = 3.9
+strict = true
+ignore_missing_imports = true
+exclude = 'tests/'
+
+[tool.pydocstyle]
+convention = "google"
+match = ".*\\.py"
+add-ignore = ["D104", "D107"]  # Optional: ignore missing docstrings in __init__ and __main__
